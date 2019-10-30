@@ -35,4 +35,10 @@ public abstract class FeedbackManagerListener {
     public boolean shouldCreateNewFeedbackThread() {
         return false;
     }
+
+    /**
+     * Allows cordova sdk to override feedback manager settings before sending feedback.
+     * @param feedbackManager
+     */
+    public abstract void overrideFeedbackManagerSettings(FeedbackManager feedbackManager);
 }

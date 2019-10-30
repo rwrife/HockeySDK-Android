@@ -552,13 +552,14 @@ public class FeedbackActivity extends Activity implements OnClickListener, View.
 
             /** Use of context menu needs to be enabled explicitly */
             Button addAttachmentButton = findViewById(R.id.button_attachment);
+            addAttachmentButton.setVisibility(View.GONE);
             addAttachmentButton.setOnClickListener(this);
             addAttachmentButton.setOnFocusChangeListener(this);
             registerForContextMenu(addAttachmentButton);
 
             mSendFeedbackButton = findViewById(R.id.button_send);
             mSendFeedbackButton.setOnClickListener(this);
-            addAttachmentButton.setOnFocusChangeListener(this);
+            // addAttachmentButton.setOnFocusChangeListener(this);
         }
     }
 
@@ -779,6 +780,8 @@ public class FeedbackActivity extends Activity implements OnClickListener, View.
 
             hideKeyboard();
         }
+
+        finish();
     }
 
     private void setError(final EditText inputField, int feedbackStringId) {

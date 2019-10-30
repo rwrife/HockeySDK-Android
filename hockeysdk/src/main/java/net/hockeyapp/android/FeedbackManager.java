@@ -106,6 +106,8 @@ public class FeedbackManager {
 
     private static String userEmail;
 
+    private static String feedbackURL = null;
+
     private static String userId;
 
     /**
@@ -240,7 +242,7 @@ public class FeedbackManager {
                     intent.putExtra(FeedbackActivity.EXTRA_INITIAL_USER_NAME, userName);
                     intent.putExtra(FeedbackActivity.EXTRA_INITIAL_USER_EMAIL, userEmail);
                     intent.putExtra(FeedbackActivity.EXTRA_INITIAL_USER_SUBJECT, userSubject);
-                    intent.putExtra(FeedbackActivity.EXTRA_INITIAL_ATTACHMENTS, getInitialAttachments(attachments));
+                    // intent.putExtra(FeedbackActivity.EXTRA_INITIAL_ATTACHMENTS, getInitialAttachments(attachments));
                     intent.putExtra(FeedbackActivity.EXTRA_USER_ID, FeedbackManager.userId);
                     return intent;
                 }
@@ -340,7 +342,7 @@ public class FeedbackManager {
             HockeyLog.error("FeedbackManager hasn't been registered.");
             return null;
         }
-        return urlString + "api/2/apps/" + identifier + "/feedback/";
+        return (feedbackURL != null ? feedbackURL : urlString) + identifier;
     }
 
     /**
@@ -395,6 +397,14 @@ public class FeedbackManager {
      */
     public static void setUserEmail(String userEmail) {
         FeedbackManager.userEmail = userEmail;
+    }
+
+    /**
+     * Overrides the feedback URL used to send feedback.
+     * @param feedbackUrl
+     */
+    public static void setFeedbackURL(String feedbackUrl) {
+        FeedbackManager.feedbackURL = feedbackUrl;
     }
 
     /**
